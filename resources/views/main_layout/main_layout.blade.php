@@ -13,5 +13,6 @@
 
     @include('main_layout.footer')
     @include('main_layout.scripts')
+    @stack('scripts')
 </body>
 </html>
