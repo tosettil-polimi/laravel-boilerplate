@@ -52,9 +52,37 @@ class Handler extends ExceptionHandler
         if($e instanceof NotFoundHttpException) {
             return response()->view('errors.404', [], 404);
         }
+        
+        if ($this->shouldReport($e)) {
+            $this->sendEmail($e);
+        }
 
         return parent::render($request, $e);
     }
 
+    /**
+     * Sends an email to the developer about the exception.
+     *
+     * @param  Throwable  $exception
+     * @return void
+     */
+    public function sendEmail(Throwable $exception)
+    {
+        try {
+            $e = FlattenException::createFromThrowable($exception);
+
+            $handler = new HtmlErrorRenderer(true);
+            $css = $handler->getStylesheet();
+            $content = $handler->getBody($e);
+
+            Mail::send('emails.exception', compact('css','content'), function ($message) {
+                $message
+                    ->to('tosettil@gmail.com')
+                    ->subject('Exception: ' . \Request::fullUrl());
+            });
+        } catch (Throwable $err) {
+            error_log($err->getMessage());
+        }
+    }
 
 }
