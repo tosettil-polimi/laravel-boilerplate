@@ -52,12 +52,17 @@ class Handler extends ExceptionHandler
         if($e instanceof NotFoundHttpException) {
             return response()->view('errors.404', [], 404);
         }
-        
+
+        return parent::render($request, $e);
+    }
+
+    public function report(Throwable $e)
+    {
         if ($this->shouldReport($e)) {
             $this->sendEmail($e);
         }
 
-        return parent::render($request, $e);
+        parent::report($e);
     }
 
     /**
