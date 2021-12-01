@@ -32,4 +32,34 @@ class PrivacyController extends Controller
             'cookies' => $privacy['content']
         ]);
     }
+    
+    public static function insertConsentSolution($email, $name, $surname) {
+        $client = new Client(['headers' => ['ApiKey' => config('app.iubenda_key')]]);
+
+        $response = $client->request('POST', 'https://consent.iubenda.com/consent/', [
+            'form_params' => [
+                'subject' => [
+                    'email' => $email,
+                    'first_name' => $name,
+                    'last_name' => $surname,
+                    'verified' => false
+                ],
+                'legal_notices' => [
+                    [
+                        'identifier' => 'privacy_policy'
+                    ],
+                    [
+                        'identifier' => 'cookie_policy'
+                    ]
+                ],
+                'preferences' => [
+                    'privacy_policy' => true,
+                    'cookie_policy' => true
+                ],
+                'ip_address' => $request->ip()
+            ]
+        ]);
+
+        return $response->getStatusCode() === 200;
+    }
 }
