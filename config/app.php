@@ -15,6 +15,7 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
     'iubenda' => env('IUBENDA_SITE_ID', ''),
+    'iubenda_key' => env('IUBENDA_CONSENT_KEY', ''),
 
     /*
     |--------------------------------------------------------------------------
