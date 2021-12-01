@@ -34,7 +34,7 @@ class PrivacyController extends Controller
         ]);
     }
     
-    public static function insertConsentSolution($email, $name, $surname) {
+    public static function insertConsentSolution($email, $name, $surname, $ip) {
         $client = new Client(['headers' => ['ApiKey' => config('app.iubenda_key')]]);
 
         $response = $client->request('POST', 'https://consent.iubenda.com/consent/', [
@@ -57,7 +57,7 @@ class PrivacyController extends Controller
                     'privacy_policy' => true,
                     'cookie_policy' => true
                 ],
-                'ip_address' => $request->ip()
+                'ip_address' => $ip
             ]
         ]);
 
