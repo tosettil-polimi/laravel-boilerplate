@@ -26,6 +26,8 @@ class FormController extends Controller
 
         Mail::send(new CtaMail($request->all()));
 
+        PrivacyController::insertConsentSolution($request->email, $request->nome, '', $request->ip());
+
         return redirect()
             ->to('thank-you');
      }
@@ -47,6 +49,8 @@ class FormController extends Controller
         }
 
         Mail::send(new ContactMail($request->all()));
+
+        PrivacyController::insertConsentSolution($request->email, $request->nome, '', $request->ip());
 
         return redirect()
             ->to('thank-you');

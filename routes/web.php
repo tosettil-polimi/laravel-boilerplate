@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PrivacyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +19,11 @@ Route::get('/robots.txt', App\Http\Controllers\RobotsController::class); // {!! 
 Route::redirect('index.{ext}', '/');
 Route::redirect('home', '/');
 
-Route::view('/', 'home');
-Route::view('thank-you', 'thank-you');
+Route::view('/', 'home')->name('home');
+Route::view('thank-you', 'thank-you')->name('thank-you');
 
 Route::post('form/cta', [App\Http\Controllers\FormController::class, 'ctaForm']);
 Route::post('form/contact', [App\Http\Controllers\FormController::class, 'contactForm']);
+
+Route::get('privacy-policy', [PrivacyController::class, 'privacyPolicy'])->name('privacy-policy');
+Route::get('cookie-policy', [PrivacyController::class, 'cookiePolicy'])->name('cookie-policy');

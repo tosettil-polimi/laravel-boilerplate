@@ -18,6 +18,7 @@ return [
     'tel' => env('TEL', ''),
     'iubenda' => env('IUBENDA_SITE_ID', ''),
     'iubenda_key' => env('IUBENDA_CONSENT_KEY', ''),
+    'gtm_id' => env('GTM_ID', ''),
 
     /*
     |--------------------------------------------------------------------------
