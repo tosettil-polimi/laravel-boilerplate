@@ -31,10 +31,10 @@ class CtaMail extends Mailable
     public function build()
     {
         return $this->markdown('emails.cta')
-            ->subject("Richiesta informazioni - Messaggio dal sito " . env('APP_NAME'))
-            ->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
+            ->subject("Richiesta informazioni - Messaggio dal sito " . config('app.name'))
+            ->from(config('mail.from.address'), config('mail.from.name'))
             ->replyTo($this->data['email'], $this->data['nome'])
-            ->to(env('APP_EMAIL'), env('APP_NAME'))
+            ->to(config('app.email'), config('app.name'))
             ->with([
                 'nome' => $this->data['nome'],
                 'messaggio' => $this->data['messaggio'],
