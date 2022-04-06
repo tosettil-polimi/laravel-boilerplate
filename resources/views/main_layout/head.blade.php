@@ -25,8 +25,11 @@
     <meta name="twitter:image" content="@yield('main_image')">
 
     <!-- Favicon -->
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <link rel="icon" href="#" type="image/x-icon">
 
     <!-- CSS -->
+    <link rel="stylesheet" href="{{ mix('css/mtconsulting.css') }}" >
 
     <!-- JQuery -->
 

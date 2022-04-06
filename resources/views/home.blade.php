@@ -6,7 +6,7 @@
 @section('main_image', '')
 
 @section('content')
-    <x-breadcrumb
+    <x-breadcrumb-component
         img="https://via.placeholder.com/1627x393"
-        :title="__('strings.site_name')" ></x-breadcrumb>
+        :title="__('strings.site_name')" ></x-breadcrumb-component>
 @endsection

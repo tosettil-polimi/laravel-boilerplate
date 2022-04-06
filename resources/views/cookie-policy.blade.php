@@ -6,9 +6,9 @@
 @section('main_image', asset(''))
 
 @section('content')
-    <x-breadcrumb
+    <x-breadcrumb-component
         img="https://via.placeholder.com/1627x393"
-        :title="__('strings.cookie_policy')" ></x-breadcrumb>
+        :title="__('strings.cookie_policy')" ></x-breadcrumb-component>
     <div class="container">
         <div class="row">
             <div class="col-lg-10 m-auto pt-5 pb-5">

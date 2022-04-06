@@ -15,7 +15,8 @@ class FormController extends Controller
             'nome' => 'string|required',
             'email' => 'email|required',
             'honey_pot' => 'string|nullable|max:0',
-            'messaggio' => 'string|required'
+            'messaggio' => 'string|required',
+            'privacy' => 'accepted',
         ]);
 
         if ($validation->fails()) {
@@ -35,6 +36,7 @@ class FormController extends Controller
     public function contactForm(Request $request) {
         $validation = Validator::make($request->all(), [
             'nome' => 'string|required',
+            'privacy' => 'accepted',
             'email' => 'email|required',
             'telefono' => 'string|required',
             'honey_pot' => 'string|nullable|max:0',
