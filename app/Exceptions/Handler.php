@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use App\Http\Middleware\Languages;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\App;
 use Symfony\Component\ErrorHandler\ErrorRenderer\HtmlErrorRenderer;
 use Symfony\Component\ErrorHandler\Exception\FlattenException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -82,12 +83,14 @@ class Handler extends ExceptionHandler
             $handler = new HtmlErrorRenderer(true);
             $css = $handler->getStylesheet();
             $content = $handler->getBody($e);
-
-            Mail::send('emails.exception', compact('css','content'), function ($message) {
-                $message
-                    ->to('tosettil@gmail.com')
-                    ->subject('Exception: ' . \Request::fullUrl());
-            });
+            
+            if (App::isProduction()) {
+                Mail::send('emails.exception', compact('css','content'), function ($message) {
+                    $message
+                        ->to('tosettil@gmail.com')
+                        ->subject('Exception: ' . \Request::fullUrl());
+                });
+            }
         } catch (Throwable $err) {
             error_log($err->getMessage());
         }
