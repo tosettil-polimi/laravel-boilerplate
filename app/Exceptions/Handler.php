@@ -62,7 +62,7 @@ class Handler extends ExceptionHandler
 
     public function report(Throwable $e)
     {
-        if ($this->shouldReport($e)) {
+        if ($this->shouldReport($e) && App::isProduction()) {
             $this->sendEmail($e);
         }
 
@@ -84,13 +84,11 @@ class Handler extends ExceptionHandler
             $css = $handler->getStylesheet();
             $content = $handler->getBody($e);
             
-            if (App::isProduction()) {
-                Mail::send('emails.exception', compact('css','content'), function ($message) {
-                    $message
-                        ->to('tosettil@gmail.com')
-                        ->subject('Exception: ' . \Request::fullUrl());
-                });
-            }
+            Mail::send('emails.exception', compact('css','content'), function ($message) {
+                $message
+                    ->to('tosettil@gmail.com')
+                    ->subject('Exception: ' . \Request::fullUrl());
+            });
         } catch (Throwable $err) {
             error_log($err->getMessage());
         }
