@@ -93,6 +93,7 @@ return [
     'not_regex'            => "Il formato di ':attribute' non è valido.",
     'numeric'              => "':attribute' deve essere un numero.",
     'present'              => "':attribute' deve essere presente.",
+    'recaptcha'            => "Il Recaptcha non è stato selezionato.",
     'regex'                => "Il formato di ':attribute' non è valido.",
     'required'             => "':attribute' è richiesto.",
     'required_if'          => "':attribute' è richiesto quando :other è :value.",
