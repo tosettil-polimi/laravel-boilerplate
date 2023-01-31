@@ -10,6 +10,7 @@
         "laravel/framework": "^9.0",
         "laravel/tinker": "^2.7",
         "mtconsultingroup/laravel-robots": "^2.1.2",
+        "spatie/laravel-honeypot": "^4.3",
         "spatie/laravel-sitemap": "^6.1.0",
         "symfony/http-client": "^6.0",
         "symfony/sendinblue-mailer": "^6.0"

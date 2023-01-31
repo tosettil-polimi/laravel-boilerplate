@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PrivacyController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,10 @@ Route::redirect('home', '/');
 Route::view('/', 'home')->name('home');
 Route::view('thank-you', 'thank-you')->name('thank-you');
 
-Route::post('form/cta', [App\Http\Controllers\FormController::class, 'ctaForm']);
-Route::post('form/contact', [App\Http\Controllers\FormController::class, 'contactForm']);
+// Don't forget to add @honeypot or <x-honeypot /> inside your form tag,
+// like you do for @csrf
+Route::post('form/cta', [App\Http\Controllers\FormController::class, 'ctaForm'])->middleware(ProtectAgainstSpam::class);
+Route::post('form/contact', [App\Http\Controllers\FormController::class, 'contactForm'])->middleware(ProtectAgainstSpam::class);
 
 Route::get('privacy-policy', [PrivacyController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('cookie-policy', [PrivacyController::class, 'cookiePolicy'])->name('cookie-policy');

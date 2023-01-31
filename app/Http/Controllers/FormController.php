@@ -14,7 +14,6 @@ class FormController extends Controller
         $validation = Validator::make($request->all(), [
             'nome' => 'string|required',
             'email' => 'email|required',
-            'honey_pot' => 'string|nullable|max:0',
             'messaggio' => 'string|required',
             'privacy' => 'accepted',
         ]);
@@ -39,7 +38,6 @@ class FormController extends Controller
             'privacy' => 'accepted',
             'email' => 'email|required',
             'telefono' => 'string|required',
-            'honey_pot' => 'string|nullable|max:0',
             'soggetto' => 'string|nullable',
             'messaggio' => 'string|nullable'
         ]);
