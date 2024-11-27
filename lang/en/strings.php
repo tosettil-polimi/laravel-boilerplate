@@ -1,6 +1,6 @@
 <?php
 
 return [
-    "cookie_policy" => "Cookie Policy",
-    "privacy_policy" => "Privacy Policy"
+    'cookie_policy' => 'Cookie Policy',
+    'privacy_policy' => 'Privacy Policy',
 ];

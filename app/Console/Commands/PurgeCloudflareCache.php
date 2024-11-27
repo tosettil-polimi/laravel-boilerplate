@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Http;
 class PurgeCloudflareCache extends Command
 {
     protected $signature = 'cloudflare:purge';
+
     protected $description = 'Purge Cloudflare cache tags';
 
     public function handle()
@@ -17,7 +18,7 @@ class PurgeCloudflareCache extends Command
 
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . $apiToken,
+            'Authorization' => 'Bearer '.$apiToken,
         ])->post("https://api.cloudflare.com/client/v4/zones/{$zoneId}/purge_cache", [
             'purge_everything' => true,
         ]);
@@ -29,7 +30,7 @@ class PurgeCloudflareCache extends Command
         } else {
             $this->error('Failed to purge Cloudflare cache.');
             // Optionally, you can log the error message from Cloudflare
-            $this->error('Error: ' . $response->body());
+            $this->error('Error: '.$response->body());
         }
     }
 }

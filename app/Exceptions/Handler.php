@@ -4,8 +4,8 @@ namespace App\Exceptions;
 
 use App\Http\Middleware\Languages;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\ErrorHandler\ErrorRenderer\HtmlErrorRenderer;
 use Symfony\Component\ErrorHandler\Exception\FlattenException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -44,7 +44,7 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
-        if($request->hasSession()) {
+        if ($request->hasSession()) {
             // Get cookie
             $cookie = $request->getSession()->get('locale');
             // Set locale
@@ -53,7 +53,7 @@ class Handler extends ExceptionHandler
             app()->setLocale(Languages::$languages[0]);
         }
 
-        if($e instanceof NotFoundHttpException) {
+        if ($e instanceof NotFoundHttpException) {
             return response()->view('errors.404', [], 404);
         }
 
@@ -72,7 +72,6 @@ class Handler extends ExceptionHandler
     /**
      * Sends an email to the developer about the exception.
      *
-     * @param  Throwable  $exception
      * @return void
      */
     public function sendEmail(Throwable $exception)
@@ -83,15 +82,14 @@ class Handler extends ExceptionHandler
             $handler = new HtmlErrorRenderer(true);
             $css = $handler->getStylesheet();
             $content = $handler->getBody($e);
-            
-            Mail::send('emails.exception', compact('css','content'), function ($message) {
+
+            Mail::send('emails.exception', compact('css', 'content'), function ($message) {
                 $message
                     ->to('tosettil@gmail.com')
-                    ->subject('Exception: ' . \Request::fullUrl());
+                    ->subject('Exception: '.\Request::fullUrl());
             });
         } catch (Throwable $err) {
             error_log($err->getMessage());
         }
     }
-
 }

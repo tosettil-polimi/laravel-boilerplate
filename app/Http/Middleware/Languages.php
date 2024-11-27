@@ -13,21 +13,21 @@ class Languages
      *
      * @array languages
      */
-    public static  $languages = ['it'];
+    public static $languages = ['it'];
 
     /**
      * Handle an incoming request.
      *
-     * @param  Request  $request
-     * @param  Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next) {
-        if (!Session::has('locale')) {
+    public function handle(Request $request, Closure $next)
+    {
+        if (! Session::has('locale')) {
             Session::put('locale', self::$languages[0]);
         }
 
         app()->setLocale(Session::get('locale'));
+
         return $next($request);
     }
 }

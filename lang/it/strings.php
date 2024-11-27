@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_name' => 'Laravel Boilerplate'
+    'site_name' => 'Laravel Boilerplate',
 ];

@@ -26,13 +26,14 @@ class GoogleReCaptchaV2 implements Rule
      */
     public function passes($attribute, $value)
     {
-        $response = Http::get("https://www.google.com/recaptcha/api/siteverify",[
+        $response = Http::get('https://www.google.com/recaptcha/api/siteverify', [
             'secret' => config('app.recaptcha_secret'),
-            'response' => $value
+            'response' => $value,
         ]);
 
-        return $response->json()["success"];
+        return $response->json()['success'];
     }
+
     /**
      * Get the validation error message.
      *

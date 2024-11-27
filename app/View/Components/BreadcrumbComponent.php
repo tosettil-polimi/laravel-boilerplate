@@ -6,7 +6,6 @@ use Illuminate\View\Component;
 
 class BreadcrumbComponent extends Component
 {
-
     /**
      * @var string
      */

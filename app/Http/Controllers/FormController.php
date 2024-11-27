@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Validator;
 
 class FormController extends Controller
 {
-    public function ctaForm(Request $request) {
+    public function ctaForm(Request $request)
+    {
         $validation = Validator::make($request->all(), [
             'nome' => 'string|required',
             'email' => 'email|required',
@@ -30,16 +31,17 @@ class FormController extends Controller
 
         return redirect()
             ->to('thank-you');
-     }
+    }
 
-    public function contactForm(Request $request) {
+    public function contactForm(Request $request)
+    {
         $validation = Validator::make($request->all(), [
             'nome' => 'string|required',
             'privacy' => 'accepted',
             'email' => 'email|required',
             'telefono' => 'string|required',
             'soggetto' => 'string|nullable',
-            'messaggio' => 'string|nullable'
+            'messaggio' => 'string|nullable',
         ]);
 
         if ($validation->fails()) {

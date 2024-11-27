@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use MadWeb\Robots\Robots;
 
 class RobotsController extends Controller
 {
     /**
      * Generate robots.txt
-     *
      */
     public function __invoke(Robots $robots)
     {

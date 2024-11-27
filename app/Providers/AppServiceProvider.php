@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Mail;
-use Symfony\Component\Mailer\Bridge\Sendinblue\Transport\SendinblueTransportFactory;
-use Symfony\Component\Mailer\Transport\Dsn;
 use Illuminate\Support\ServiceProvider;
 use MadWeb\Robots\RobotsFacade;
+use Symfony\Component\Mailer\Bridge\Sendinblue\Transport\SendinblueTransportFactory;
+use Symfony\Component\Mailer\Transport\Dsn;
 
 class AppServiceProvider extends ServiceProvider
 {
